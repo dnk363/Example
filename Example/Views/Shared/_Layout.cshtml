@@ -25,19 +25,13 @@
             }
             else
             {
-                <button class="navbar-toggler" id="register" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    Register
-                </button>
-                <button class="navbar-toggler" id="login" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    Login
-                </button>
+                <form method="post" asp-controller="Account" asp-action="Register">
+                    <input type="submit" value="Register" />
+                </form>
+                <form method="post" asp-controller="Account" asp-action="Login">
+                    <input type="submit" value="Login" />
+                </form>
             }
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a class="navbar-brand" href="~/home">Home</a></li>
-                </ul>
-
-            </div>
         </div>
     </nav>
 
@@ -52,38 +46,7 @@
             </p>
         </footer>
     </div>
-
-    <script type="text/javascript">
-        document.getElementById("short").addEventListener("click", function () {
-            var longurl = '?id=' + document.getElementById('longurl').value;
-            fetch('/home/shorturl/' + longurl).then(
-                function (response) {
-                    if (response.status !== 200) {
-                        return;
-                    }
-
-                    response.json().then(function (result) {
-                        document.getElementById('result').innerHTML = result;
-                    });
-                }
-            );
-        });
-    </script>
-    <script type="text/javascript">
-        document.getElementById("dataItem").addEventListener("click", function () {
-            fetch('/home/data/').then(
-                function (response) {
-                    if (response.status !== 200) {
-                        return;
-                    }
-
-                    response.text().then(function (data) {
-                        document.getElementById('body').innerHTML = data;
-                    });
-                }
-            );
-        });
-    </script>
+    <script src="~/Main.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
