@@ -2,9 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Example.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,12 +30,12 @@ namespace Example
             string connection1 = Configuration.GetConnectionString("DefaultConnection");
             string connection2 = Configuration.GetConnectionString("UserConnection");
             // добавляем контекст MobileContext в качестве сервиса в приложение
-            /*services.AddDbContext<ShortContext>(options =>
+            services.AddDbContext<ShortContext>(options =>
                 options.UseSqlServer(connection1));
             services.AddDbContext<UserContext>(options =>
                 options.UseSqlServer(connection2));
             services.AddIdentity<User, IdentityRole>()
-                .AddEntityFrameworkStores<UserContext>();*/
+                .AddEntityFrameworkStores<UserContext>();
             services.AddRazorPages();
             services.AddMvcCore();
         }
@@ -48,6 +51,7 @@ namespace Example
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();
+            app.UseAuthorization();
             app.UseExceptionHandler("/Home/Error");
             app.UseHttpsRedirection();
 

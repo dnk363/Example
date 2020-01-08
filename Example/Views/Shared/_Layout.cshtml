@@ -1,0 +1,89 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Example.Models
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]Example</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <button class="navbar-toggler" id="dataItem" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    View Data
+                </button>
+                <form method="post" asp-controller="Account" asp-action="Logout">
+                    <input type="submit" value="Выход" />
+                </form>
+            }
+            else
+            {
+                <button class="navbar-toggler" id="register" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    Register
+                </button>
+                <button class="navbar-toggler" id="login" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    Login
+                </button>
+            }
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a class="navbar-brand" href="~/home">Home</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="container body-content">
+        <div id="body">
+            @RenderBody()
+        </div>
+        <hr />
+        <footer>
+            <p>
+                Copyright &copy; 2020 <a href="https://github.com/dnk363">Denis Gulyaev</a>
+            </p>
+        </footer>
+    </div>
+
+    <script type="text/javascript">
+        document.getElementById("short").addEventListener("click", function () {
+            var longurl = '?id=' + document.getElementById('longurl').value;
+            fetch('/home/shorturl/' + longurl).then(
+                function (response) {
+                    if (response.status !== 200) {
+                        return;
+                    }
+
+                    response.json().then(function (result) {
+                        document.getElementById('result').innerHTML = result;
+                    });
+                }
+            );
+        });
+    </script>
+    <script type="text/javascript">
+        document.getElementById("dataItem").addEventListener("click", function () {
+            fetch('/home/data/').then(
+                function (response) {
+                    if (response.status !== 200) {
+                        return;
+                    }
+
+                    response.text().then(function (data) {
+                        document.getElementById('body').innerHTML = data;
+                    });
+                }
+            );
+        });
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
