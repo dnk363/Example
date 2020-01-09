@@ -14,23 +14,31 @@
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
+            <button class="navbar-toggler" id="index" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                Home
+            </button>
             @if (SignInManager.IsSignedIn(User))
             {
-                <button class="navbar-toggler" id="dataItem" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    View Data
-                </button>
-                <form method="post" asp-controller="Account" asp-action="Logout">
-                    <input type="submit" value="Выход" />
-                </form>
+                <div class="form-inline">
+                    <button class="navbar-toggler" id="dataItem" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        View Data
+                    </button>
+                    <a class="nav-item nav-link" href="#">@User.Identity.Name</a>
+                    <form method="post" asp-controller="Account" asp-action="Logout">
+                        <input type="submit" value="Выход" />
+                    </form>
+                </div>
             }
             else
             {
-                <form method="post" asp-controller="Account" asp-action="Register">
-                    <input type="submit" value="Register" />
-                </form>
-                <form method="post" asp-controller="Account" asp-action="Login">
-                    <input type="submit" value="Login" />
-                </form>
+                <div class="form-inline">
+                    <form method="post" asp-controller="Account" asp-action="Register">
+                        <input type="submit" value="Register" />
+                    </form>
+                    <form method="post" asp-controller="Account" asp-action="Login">
+                        <input type="submit" value="Login" />
+                    </form>
+                </div>
             }
         </div>
     </nav>
