@@ -9,11 +9,11 @@
     <br />
     <form asp-action="Create">
         <div class="form-horizontal">
-            <div class="input-group input-group-lg">
-                <div>
-                    <input type="text" id="longurl" class="form-control" placeholder="URL you would like to have shortened" />
+            <div class="input-group col-md-6">
+                <input type="text" id="longurl" class="form-control" placeholder="URL you would like to have shortened" aria-label="By entering in a URL in the text field below, we will create a short URL for you!" aria-describedby="short">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="short">Shorten</button>
                 </div>
-                <input type="button" value="Shorten" id="short" class="btn btn-primary" />
             </div>
             <fieldset>
                 <br />

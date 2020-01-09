@@ -31,6 +31,11 @@ namespace URLShortener.Controllers
         [HttpGet]
         public IActionResult ShortUrl(string id)
         {
+            if (id == null)
+            {
+                return new JsonResult("Enter the URL in field");
+            }
+
             id.ToLower();
             Regex regex = new Regex(@"^http.*");
             MatchCollection matches = regex.Matches(id);

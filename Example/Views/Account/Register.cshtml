@@ -2,27 +2,31 @@
 <h2>Registration</h2>
 <form method="post" asp-controller="Account" asp-action="Register">
     <div asp-validation-summary="ModelOnly"></div>
-    <div>
-        <label asp-for="Email"></label><br />
-        <input asp-for="Email" />
-        <span asp-validation-for="Email"></span>
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <label asp-for="Email"></label><br />
+            <input class="form-control" asp-for="Email" />
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div class="col-md-3 mb-3">
+            <label asp-for="SName"></label><br />
+            <input class="form-control" asp-for="SName" />
+            <span asp-validation-for="SName"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <label asp-for="Password"></label><br />
+            <input class="form-control" asp-for="Password" />
+            <span asp-validation-for="Password"></span>
+        </div>
+        <div class="col-md-3 mb-3">
+            <label asp-for="PasswordConfirm"></label><br />
+            <input class="form-control" asp-for="PasswordConfirm" />
+            <span asp-validation-for="PasswordConfirm"></span>
+        </div>
     </div>
     <div>
-        <label asp-for="SName"></label><br />
-        <input asp-for="SName" />
-        <span asp-validation-for="SName"></span>
-    </div>
-    <div>
-        <label asp-for="Password"></label><br />
-        <input asp-for="Password" />
-        <span asp-validation-for="Password"></span>
-    </div>
-    <div>
-        <label asp-for="PasswordConfirm"></label><br />
-        <input asp-for="PasswordConfirm" />
-        <span asp-validation-for="PasswordConfirm"></span>
-    </div>
-    <div>
-        <input type="submit" value="Регистрация" />
+        <input class="btn btn-primary" type="submit" value="Регистрация" />
     </div>
 </form>

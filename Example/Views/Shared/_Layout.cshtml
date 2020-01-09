@@ -14,29 +14,27 @@
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <button class="navbar-toggler" id="index" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                Home
-            </button>
+            <a href="/home" class="btn">Home</a>
             @if (SignInManager.IsSignedIn(User))
             {
-                <div class="form-inline">
-                    <button class="navbar-toggler" id="dataItem" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <div class="form-inline nav-item">
+                    <button class="btn" id="dataItem">
                         View Data
                     </button>
-                    <a class="nav-item nav-link" href="#">@User.Identity.Name</a>
+                    <a class="btn" href="/account/account">@User.Identity.Name</a>
                     <form method="post" asp-controller="Account" asp-action="Logout">
-                        <input type="submit" value="Выход" />
+                        <input class="btn" type="submit" value="Выход" />
                     </form>
                 </div>
             }
             else
             {
-                <div class="form-inline">
-                    <form method="post" asp-controller="Account" asp-action="Register">
-                        <input type="submit" value="Register" />
+                <div class="form-inline nav-item">
+                    <form class="navbar-toggler" method="get" asp-controller="Account" asp-action="Register">
+                        <input class="btn" type="submit" value="Register" />
                     </form>
-                    <form method="post" asp-controller="Account" asp-action="Login">
-                        <input type="submit" value="Login" />
+                    <form class="navbar-toggler" method="get" asp-controller="Account" asp-action="Login">
+                        <input class="btn" type="submit" value="Login" />
                     </form>
                 </div>
             }

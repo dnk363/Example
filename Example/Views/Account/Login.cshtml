@@ -3,21 +3,25 @@
 <form method="post" asp-controller="Account" asp-action="Login"
       asp-route-returnUrl="@Model.ReturnUrl">
     <div asp-validation-summary="ModelOnly"></div>
-    <div>
-        <label asp-for="Email"></label><br />
-        <input asp-for="Email" />
-        <span asp-validation-for="Email"></span>
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <label asp-for="Email"></label><br />
+            <input class="form-control" asp-for="Email" />
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div class="col-md-3 mb-3">
+            <label asp-for="Password"></label><br />
+            <input class="form-control" asp-for="Password" />
+            <span asp-validation-for="Password"></span>
+        </div>
     </div>
-    <div>
-        <label asp-for="Password"></label><br />
-        <input asp-for="Password" />
-        <span asp-validation-for="Password"></span>
-    </div>
-    <div>
-        <label asp-for="RememberMe"></label><br />
-        <input asp-for="RememberMe" />
-    </div>
-    <div>
-        <input type="submit" value="Войти" />
+    <div class="container body-content">
+        <div class="row custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="rememberCheck" asp-for="RememberMe" />
+            <label class="custom-control-label" for="rememberCheck" asp-for="RememberMe"></label><br />
+        </div>
+        <div class="row">
+            <input class="btn btn-primary" type="submit" value="Войти" />
+        </div>
     </div>
 </form>
