@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +9,7 @@ using Example.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using Example.ViewModel;
+using System.Text;
 
 namespace URLShortener.Controllers
 {
@@ -108,16 +109,10 @@ namespace URLShortener.Controllers
 
         private string GetShortUrl(string lUrl)
         {
-            string sUrl = "";
+            var md5 = MD5.Create();
+            var hash = Convert.ToBase64String(md5.ComputeHash(Encoding.UTF8.GetBytes(lUrl)));
 
-            char[] a = lUrl.GetHashCode().ToString().ToCharArray();
-
-            foreach (var rt in a)
-            {
-                sUrl += (char)(25 + Convert.ToInt32(rt));
-            }
-
-            return sUrl;
+            return hash;
         }
     }
 }
