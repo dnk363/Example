@@ -110,7 +110,7 @@ namespace URLShortener.Controllers
         private string GetShortUrl(string lUrl)
         {
             var md5 = MD5.Create();
-            var hash = Convert.ToBase64String(md5.ComputeHash(Encoding.UTF8.GetBytes(lUrl)));
+            var hash = Convert.ToBase64String(md5.ComputeHash(Encoding.UTF8.GetBytes(lUrl))).Trim('=');
 
             return hash;
         }
