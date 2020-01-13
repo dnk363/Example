@@ -1,0 +1,13 @@
+﻿@page
+<div class="container">
+    <div id="userInput">@User.Identity.Name</div>
+    <input type="text" id="messageInput" class="form-control" placeholder="Message">
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" id="sendButton">Send message</button>
+    </div>
+</div>
+
+<h2 class="text-center">Chat</h2>
+<div class="container col-md-6" id="messagesList">
+
+</div>

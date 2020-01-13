@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Example.Hubs;
 
 namespace Example
 {
@@ -38,6 +39,7 @@ namespace Example
                 .AddEntityFrameworkStores<UserContext>();
             services.AddRazorPages();
             services.AddMvcCore();
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +62,7 @@ namespace Example
                 endpoints.MapRazorPages();
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute("redirect", "{controller=R}/{action=L}/{id}");
+                endpoints.MapHub<ChatHub>("/chatHub");
             });
         }
     }

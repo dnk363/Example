@@ -12,12 +12,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top navbar-light" style="background-color: #e3f2fd;">
+    <nav class="navbar navbar-fixed-top">
         <div class="container">
             <a href="/home" class="btn">Home</a>
             @if (SignInManager.IsSignedIn(User))
             {
                 <div class="form-inline nav-item">
+                    <a class="btn" href="/home/chat">Chat</a>
                     <button class="btn" id="dataItem">
                         View Data
                     </button>
@@ -53,6 +54,8 @@
         </footer>
     </div>
     <script src="~/Main.js"></script>
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/chat.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

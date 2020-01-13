@@ -84,6 +84,11 @@ namespace URLShortener.Controllers
             return View();
         }
 
+        public IActionResult Chat()
+        {
+            return View();
+        }
+
         [Authorize]
         public IActionResult Data()
         {
