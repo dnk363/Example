@@ -1,13 +1,19 @@
 ﻿@page
-<div class="container">
-    <div id="userInput">@User.Identity.Name</div>
-    <input type="text" id="messageInput" class="form-control" placeholder="Message">
-    <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button" id="sendButton">Send message</button>
-    </div>
-</div>
 
 <h2 class="text-center">Chat</h2>
-<div class="container col-md-6" id="messagesList">
+<div class="container col-md-6" id="usersList">
 
+</div>
+<div class="container col-md-8" style="box-shadow: 0 0 3px #ddd; padding:0;">
+    <div id="messagesList" style="padding:10px; height: 400px; overflow: auto; font-weight: 700;">
+        <div class="text-center" style="padding:5px; margin:0;">
+            Welcome to chat!
+        </div>
+    </div>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" id="messageInput" placeholder="Message" aria-label="Message">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" id="sendButton">Send message</button>
+        </div>
+    </div>
 </div>

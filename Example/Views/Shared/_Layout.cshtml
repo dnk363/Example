@@ -22,7 +22,7 @@
                     <button class="btn" id="dataItem">
                         View Data
                     </button>
-                    <a class="btn" href="/account/account">@User.Identity.Name</a>
+                    <a class="btn" id="userInput" href="/account/account">@User.Identity.Name</a>
                     <form method="post" asp-controller="Account" asp-action="Logout">
                         <input class="btn" type="submit" value="Выход" />
                     </form>

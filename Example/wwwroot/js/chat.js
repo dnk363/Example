@@ -11,32 +11,30 @@ connection.on("ReceiveMessage", function (user, message) {
     var time = checkTime(date.getHours()) + ':' + checkTime(date.getMinutes()) + ':' + checkTime(date.getSeconds());
 
     var mainDiv = document.createElement("div");
-    mainDiv.className = "message-candidate center-block";
+    mainDiv.style = "padding:5px; margin:0;";
 
     var rowDiv = document.createElement("div");
-    rowDiv.className = "row";
-
-    var subDiv = document.createElement("div");
-    subDiv.className = "col-xs-8 col-md-6";
+    rowDiv.className = "media-body";
 
     var name = document.createElement("h5");
-    name.className = "message-name";
+    name.className = "col-md-6";
     name.textContent = user;
 
-    var dateTime = document.createElement("div");
-    dateTime.className = "col-xs-4 col-md-6 text-right message-date";
-    dateTime.textContent = time;
-
     var message = document.createElement("div");
-    message.className = "row message-text";
+    message.className = "col-md-6";
+    message.style = "margin:20;";
     message.textContent = msg;
+
+    var dateTime = document.createElement("div");
+    dateTime.className = "col-md-3 ml-auto";
+    dateTime.textContent = time;
 
     document.getElementById("messagesList").appendChild(mainDiv);
     mainDiv.appendChild(rowDiv);
-    mainDiv.appendChild(message);
-    rowDiv.appendChild(subDiv);
+    rowDiv.appendChild(name);
+    rowDiv.appendChild(message);
     rowDiv.appendChild(dateTime);
-    subDiv.appendChild(name);
+    document.getElementById("messagesList").scrollTop = 9999;
 });
 
 connection.start().then(function () {
