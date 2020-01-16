@@ -1,1 +1,20 @@
-﻿
+﻿@model Example.ViewModels.AccountViewModel
+<h2>My account details</h2>
+
+<div class="shadow p-3 mb-5 bg-light rounded">
+    <label>Email: </label>
+    <label style="margin-left:20px">
+        @Model.Email
+    </label>
+</div>
+
+<div class="shadow p-3 mb-5 bg-light rounded">
+    <label>Name: </label>
+    <label style="margin-left:20px">
+        @Model.SName
+    </label>
+</div>
+
+<div class="shadow p-3 mb-5 bg-light rounded">
+    <a class="btn" href="/account/changepassword">Change your password</a>
+</div>
