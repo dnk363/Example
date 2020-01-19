@@ -5,6 +5,7 @@
         <tr>
             <th>Original URL</th>
             <th>Short URL</th>
+            <th></th>
         </tr>
     </thead>
     @foreach (URLShort p in Model.UrlData)
@@ -12,8 +13,7 @@
         <tr>
             <td><a class="navbar-brand" href="@p.LongURL">@p.LongURL</a></td>
             <td><a class="navbar-brand" href="@p.ShortURL">@p.ShortURL</a></td>
+            <td><button id="@p.Id" class="btn btn-outline-secondary" name="delete">Удалить</button></td>
         </tr>
     }
 </table>
-
-

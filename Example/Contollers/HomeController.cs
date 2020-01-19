@@ -99,6 +99,7 @@ namespace URLShortener.Controllers
             List<URLShort> urlData = db.SUrl
                 .Select(c => new URLShort
                 {
+                    Id = c.Id,
                     ShortURL = Request.Scheme.ToString() + "://" + Request.Host.ToString() + "/r/l/" + c.ShortURL,
                     LongURL = c.LongURL,
                     UserId = c.UserId
@@ -108,8 +109,28 @@ namespace URLShortener.Controllers
 
             DataViewModel ivm = new DataViewModel { UrlData = urlData };
 
-
             return PartialView(ivm);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            ClaimsPrincipal currentUser = User;
+            string userId = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            string resultMessage = "";
+            var b = db.SUrl.FirstOrDefault(p => p.Id == id && p.UserId == userId); 
+
+            if (b == null)
+            {
+                resultMessage = "Not found in database";
+            }
+            else
+            {
+                db.SUrl.Remove(b);
+                db.SaveChangesAsync();
+            }
+
+            return new JsonResult(resultMessage);
         }
 
         private string GetShortUrl(string lUrl)
