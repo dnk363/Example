@@ -27,21 +27,20 @@ namespace Example
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            // получаем строку подключения из файла конфигурации
             string connection1 = Configuration.GetConnectionString("DefaultConnection");
             string connection2 = Configuration.GetConnectionString("UserConnection");
-            // добавляем контекст MobileContext в качестве сервиса в приложение
+
             services.AddDbContext<ShortContext>(options =>
                 options.UseSqlServer(connection1));
             services.AddDbContext<UserContext>(options =>
                 options.UseSqlServer(connection2));
             services.AddIdentity<User, IdentityRole>(opts =>
             {
-                opts.Password.RequiredLength = 5;   // минимальная длина
-                opts.Password.RequireNonAlphanumeric = false;   // требуются ли не алфавитно-цифровые символы
-                opts.Password.RequireLowercase = false; // требуются ли символы в нижнем регистре
-                opts.Password.RequireUppercase = false; // требуются ли символы в верхнем регистре
-                opts.Password.RequireDigit = false; // требуются ли цифры
+                opts.Password.RequiredLength = 5; 
+                opts.Password.RequireNonAlphanumeric = false;
+                opts.Password.RequireLowercase = false; 
+                opts.Password.RequireUppercase = false; 
+                opts.Password.RequireDigit = false;
             })
                 .AddEntityFrameworkStores<UserContext>();
             services.AddRazorPages();

@@ -32,6 +32,8 @@ namespace URLShortener.Controllers
         [HttpGet]
         public IActionResult ShortUrl(string id)
         {
+            string userId = "";
+
             if (id == null)
             {
                 return new JsonResult("Enter the URL in field");
@@ -41,24 +43,31 @@ namespace URLShortener.Controllers
             Regex regex = new Regex(@"^http.*");
             MatchCollection matches = regex.Matches(id);
             ClaimsPrincipal currentUser = User;
+            if (currentUser.Identity.Name != null)
+            {
+                userId = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+            }
 
             if (matches.Count == 0)
             {
-                id = "http://" + id;//Добавление http(s) к длинной ссылке, если его нет
+                id = "http://" + id; //Add http(s) to long URL if it is not
             }
 
-            url.ShortURL = GetShortUrl(id); // Получение короткого кода для ссылки из переданной длинной ссылки
+            url.ShortURL = GetShortUrl(id); //Getting a short code for a link from a passed long URL
 
-            var b = db.SUrl.FirstOrDefault(p => p.ShortURL == url.ShortURL); // Проверка наличия короткой ссылки в базе
+            var b = db.SUrl.FirstOrDefault(p => p.ShortURL == url.ShortURL && (p.UserId == userId || currentUser.Identity.Name == null)); // Checking for a short URL in the database
 
-            // Если в базе нет короткой ссылки - добавляем
-            if (b == null)
+            // If there is no short URL in the database - add
+            if (    b == null
+                || (b.UserId == null && currentUser.Identity.Name != null)
+                || (b.UserId != null && (currentUser.Identity.Name == null || userId != b.UserId))
+                )
             {
                 url.LongURL = id;
 
                 if (currentUser.Identity.Name != null)
                 {
-                    url.UserId = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+                    url.UserId = userId;
                 }
 
                 db.SUrl.Add(url);
@@ -128,6 +137,7 @@ namespace URLShortener.Controllers
             {
                 db.SUrl.Remove(b);
                 db.SaveChangesAsync();
+                resultMessage = "Delete successfully";
             }
 
             return new JsonResult(resultMessage);

@@ -15,7 +15,7 @@ namespace Example.ViewModels
         [Display(Name = "NewPassword")]
         public string NewPassword { get; set; }
         [Required]
-        [Compare("NewPassword", ErrorMessage = "Пароли не совпадают")]
+        [Compare("NewPassword", ErrorMessage = "Passwords do not match")]
         [DataType(DataType.Password)]
         [Display(Name = "NewPasswordConfirm")]
         public string NewPasswordConfirm { get; set; }

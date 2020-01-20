@@ -22,7 +22,7 @@ namespace Example.ViewModels
         public string Password { get; set; }
 
         [Required]
-        [Compare("Password", ErrorMessage = "Пароли не совпадают")]
+        [Compare("Password", ErrorMessage = "Passwords do not match")]
         [DataType(DataType.Password)]
         [Display(Name = "PasswordConfirm")]
         public string PasswordConfirm { get; set; }
