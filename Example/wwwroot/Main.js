@@ -1,4 +1,4 @@
-﻿function dataItem() {
+﻿function dataItem(message) {
     fetch('/home/data/').then(
         function (response) {
             if (response.status !== 200) {
@@ -7,6 +7,13 @@
 
             response.text().then(function (data) {
                 document.getElementById('body').innerHTML = data;
+                if (message != null) {
+                    //document.getElementById('messageData').innerHTML = message;
+                    var name = document.createElement("div");
+                    name.className = "alert alert-primary";
+                    name.textContent = message;
+                    document.getElementById("messageData").appendChild(name);
+                }
             });
         }
     );
@@ -54,7 +61,9 @@ document.addEventListener('click', function (e) {
                     return
                 }
 
-                dataItem();
+                response.json().then(function (result) {
+                    dataItem(result);
+                });
             }
         );
     }
