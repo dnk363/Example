@@ -34,6 +34,7 @@ connection.on("ReceiveMessage", function (user, message) {
     rowDiv.appendChild(name);
     rowDiv.appendChild(message);
     rowDiv.appendChild(dateTime);
+    document.getElementById("messageInput").value = "";
     document.getElementById("messagesList").scrollTop = 9999;
 });
 

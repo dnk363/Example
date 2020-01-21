@@ -8,15 +8,15 @@
             response.text().then(function (data) {
                 document.getElementById('body').innerHTML = data;
                 if (message != null) {
-                    var name = document.createElement("div");
+                    var alertMessage = document.createElement("div");
                     if (message == "Delete successfully") {
-                        name.className = "alert alert-primary";
+                        alertMessage.className = "alert alert-primary";
                     }
                     else {
-                        name.className = "alert alert-danger";
+                        alertMessage.className = "alert alert-danger";
                     }
-                    name.textContent = message;
-                    document.getElementById("messageData").appendChild(name);
+                    alertMessage.textContent = message;
+                    document.getElementById("messageData").appendChild(alertMessage);
                 }
             });
         }
