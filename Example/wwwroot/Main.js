@@ -8,9 +8,13 @@
             response.text().then(function (data) {
                 document.getElementById('body').innerHTML = data;
                 if (message != null) {
-                    //document.getElementById('messageData').innerHTML = message;
                     var name = document.createElement("div");
-                    name.className = "alert alert-primary";
+                    if (message == "Delete successfully") {
+                        name.className = "alert alert-primary";
+                    }
+                    else {
+                        name.className = "alert alert-danger";
+                    }
                     name.textContent = message;
                     document.getElementById("messageData").appendChild(name);
                 }
