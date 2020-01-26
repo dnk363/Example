@@ -11,7 +11,7 @@ using System.Security.Claims;
 using Example.ViewModel;
 using System.Text;
 
-namespace URLShortener.Controllers
+namespace Example.Controllers
 {
     public class HomeController : Controller
     {
@@ -143,7 +143,7 @@ namespace URLShortener.Controllers
             return new JsonResult(resultMessage);
         }
 
-        private string GetShortUrl(string lUrl)
+        public string GetShortUrl(string lUrl)
         {
             var md5 = MD5.Create();
             var hash = Convert.ToBase64String(md5.ComputeHash(Encoding.UTF8.GetBytes(lUrl))).Trim('=');

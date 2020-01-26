@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Example.Models;
 
-namespace URLShortener.Controllers
+namespace Example.Controllers
 {
     public class RController : Controller
     {
