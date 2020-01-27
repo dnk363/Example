@@ -42,15 +42,15 @@ namespace Example.Controllers
             id.ToLower();
             Regex regex = new Regex(@"^http.*");
             MatchCollection matches = regex.Matches(id);
+            if (matches.Count == 0)
+            {
+                id = "http://" + id; //Add http(s) to long URL if it is not
+            }
+
             ClaimsPrincipal currentUser = User;
             if (currentUser.Identity.Name != null)
             {
                 userId = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
-            }
-
-            if (matches.Count == 0)
-            {
-                id = "http://" + id; //Add http(s) to long URL if it is not
             }
 
             url.ShortURL = GetShortUrl(id); //Getting a short code for a link from a passed long URL
@@ -81,6 +81,11 @@ namespace Example.Controllers
             string resulturl = Request.Scheme.ToString() + "://" + Request.Host.ToString() + "/r/l/" + GetShortUrl(id);
 
             return new JsonResult(resulturl);
+        }
+
+        public ActionResult ShortUrl(URLShort uRLShort)
+        {
+            throw new NotImplementedException();
         }
 
         public IActionResult R()
