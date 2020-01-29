@@ -38,6 +38,31 @@ connection.on("ReceiveMessage", function (user, message) {
     document.getElementById("messagesList").scrollTop = 9999;
 });
 
+connection.on("Connect", function (user) {
+    if (!document.getElementById(user)) {
+        var userNamediv = document.createElement("div");
+        userNamediv.id = user;
+
+        var userNameText = document.createElement("div");
+        userNameText.textContent = user;
+        userNameText.className = "col-md-1 offset-md-1 text-md-center";
+        userNameText.style = "margin-top:5px;";
+
+        var userNameLine = document.createElement("hr");
+        userNameLine.id = user;
+        userNameLine.className = "offset-md-1 sticky-top";
+        userNameLine.style = "align:center;margin-top:5px;";
+
+        userNamediv.appendChild(userNameText);
+        userNamediv.appendChild(userNameLine);
+        document.getElementById("userList").appendChild(userNamediv);
+    }
+});
+
+connection.on("Disconnect", function (user) {
+    document.getElementById(user).remove();
+});
+
 connection.start().then(function () {
     document.getElementById("sendButton").disabled = false;
 }).catch(function (err) {
