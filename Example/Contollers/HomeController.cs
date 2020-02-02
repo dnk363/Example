@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Example.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
-using Example.ViewModel;
+using Example.ViewModels;
 using System.Text;
 
 namespace Example.Controllers
@@ -19,9 +19,9 @@ namespace Example.Controllers
 
         private ShortContext db;
 
-        public HomeController(ShortContext context)
+        public HomeController(ShortContext shortContext)
         {
-            db = context;
+            db = shortContext;
         }
 
         public IActionResult Index()
@@ -83,7 +83,7 @@ namespace Example.Controllers
             return new JsonResult(resulturl);
         }
 
-        public ActionResult ShortUrl(URLShort uRLShort)
+        public ActionResult ShortUrl()
         {
             throw new NotImplementedException();
         }
@@ -98,6 +98,7 @@ namespace Example.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult Chat()
         {
             return View();

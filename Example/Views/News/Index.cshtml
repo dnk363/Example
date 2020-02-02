@@ -1,0 +1,19 @@
+﻿@model Example.ViewModels.NewsViewModel
+
+@if (User.IsInRole("moderator"))
+{
+    <a class="btn" href="/news/create">Add news</a>
+}
+
+<div class="card">
+    <div class="card-body">
+        @foreach (News p in Model.NewsData)
+        {
+            <h4 class="card-title">@p.NewsHeading</h4>
+            <h6 class="card-subtitle mb-2 text-muted">@p.NewsDate</h6>
+            <p class="card-text">
+                @p.NewsText
+            </p>
+        }
+    </div>
+</div>

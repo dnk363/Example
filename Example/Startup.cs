@@ -29,6 +29,8 @@ namespace Example
         {
             string connection1 = Configuration.GetConnectionString("DefaultConnection");
             string connection2 = Configuration.GetConnectionString("UserConnection");
+            string connection3 = Configuration.GetConnectionString("NewsConnection");
+
 
             services.AddDbContext<ShortContext>(options =>
                 options.UseSqlServer(connection1));
@@ -46,6 +48,9 @@ namespace Example
             services.AddRazorPages();
             services.AddMvcCore();
             services.AddSignalR();
+
+            services.AddDbContext<NewsContext>(options =>
+                options.UseSqlServer(connection3));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

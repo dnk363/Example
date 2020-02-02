@@ -23,6 +23,20 @@
     );
 }
 
+function newsItem() {
+    fetch('/news').then(
+        function (response) {
+            if (response.status !== 200) {
+                return;
+            }
+
+            response.text().then(function (data) {
+                document.getElementById('body').innerHTML = data;
+            });
+        }
+    );
+}
+
 //Create short url
 if (document.getElementById("short")) {
     document.getElementById("short").addEventListener("click", function () {
@@ -44,6 +58,11 @@ if (document.getElementById("short")) {
 //Show Data
 if (document.getElementById("dataItem")) {
     document.getElementById("dataItem").addEventListener("click", function () { dataItem() });
+}
+
+//Show News
+if (document.getElementById("newsItem")) {
+    document.getElementById("newsItem").addEventListener("click", function () { newsItem() });
 }
 
 //Show Message

@@ -1,0 +1,20 @@
+﻿@model Example.Models.News
+<h3>@ViewData["Message"]</h3>
+<form method="post" asp-controller="News" asp-action="Create">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div>
+        <div class="col-md-6 mb-3">
+            <label asp-for="NewsHeading">Heading</label><br />
+            <input type="text" class="form-control" asp-for="NewsHeading" />
+            <span asp-validation-for="NewsHeading"></span>
+        </div>
+        <div class="col-md-8 mb-3">
+            <label asp-for="NewsText">News Text</label><br />
+            <textarea class="form-control" rows="9" asp-for="NewsText"></textarea>
+            <span asp-validation-for="NewsText"></span>
+        </div>
+    </div>
+    <div>
+        <input class="btn btn-primary" type="submit" value="Add" />
+    </div>
+</form>

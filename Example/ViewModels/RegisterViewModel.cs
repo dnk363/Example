@@ -26,5 +26,8 @@ namespace Example.ViewModels
         [DataType(DataType.Password)]
         [Display(Name = "PasswordConfirm")]
         public string PasswordConfirm { get; set; }
+
+        [Display(Name = "News subscription")]
+        public bool News { get; set; }
     }
 }

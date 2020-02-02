@@ -26,6 +26,11 @@
             <span asp-validation-for="PasswordConfirm"></span>
         </div>
     </div>
+    <div class="row col-md-3 mb-3">
+        <label asp-for="News"></label>&nbsp;
+        <input type="checkbox" value="true" name="News" class="custom-control custom-switch" asp-for="News"/>
+        <span asp-validation-for="News"></span>
+    </div>
     <div>
         <input class="btn btn-primary" type="submit" value="Register" />
     </div>

@@ -14,10 +14,19 @@
 <body>
     <nav class="navbar nav-tabs navbar-fixed-top">
         <div class="container">
-            <a href="/home" class="btn">Home</a>
+            <div class="form-inline nav-item">
+                <a href="/home" class="btn">Home</a>
+                <button class="btn" id="newsItem">
+                    News
+                </button>
+            </div>
             @if (SignInManager.IsSignedIn(User))
             {
                 <div class="form-inline nav-item">
+                    @if (User.IsInRole("admin"))
+                    {
+                        <a class="btn" href="/roles">Change Roles</a>
+                    }
                     <a class="btn" href="/home/chat">Chat</a>
                     <button class="btn" id="dataItem">
                         View Data
